@@ -267,6 +267,7 @@ python scripts/checkcopy.py <项目目录> --ext .py,.md
 | 0b | `python scripts/bootstrap_fonts.py` | 字体缺失时下载并校验 SHA-256 |
 | 1 | `python scripts/checkcopy.py <目录> --ext .py,.md` | 清除旧文案中的禁用词 |
 | 2 | `reference/input-contract.md` | 收集五项输入 |
+| 2b | `docs/REFERENCES.md` | 记录参考来源与借用范围；不复制他人图像 |
 | 3 | `reference/page-types.md`、`templates/矩阵.csv` | 确定页数与图像位矩阵 |
 | 4 | `python templates/page-skeleton.py -o base.png` | 生成合规底页（边距、字号、栅格） |
 | 5 | `reference/layout-specs.md` | 确定色板与间距 |
@@ -296,6 +297,7 @@ docs/STYLE.md                 书写规范（五项原则与禁止项）
 docs/GLOSSARY.md              术语对照表（四类，含英文）
 docs/TOOLCHAIN.md             工具链与许可（按阶段）
 docs/GENERATION.md            素材生成与溯源（prompts.jsonl 结构、裁决标准）
+docs/REFERENCES.md            参考来源与借用边界（不复制他人图像）
 docs/HANDOFF-1.3.0.md         交付说明（"同一棚拍的光"给它看，别用文字描述）
 examples/watch/prompts/       手表生图提示词（身份锁 / 场景锁 / 创意锁）
 examples/nanzhi/prompts/      香水生图提示词
