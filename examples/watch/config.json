@@ -1,0 +1,49 @@
+{
+  "_说明": "色板/字号/文案/路径都在这里。改文案改 copy，改配色改 palette，改字号改 type。页面布局坐标仍在脚本里（路线 1.5 的范围）。",
+  "palette": {
+    "ink": "#0A0806",
+    "fg": "#EFE3CE",
+    "sub": "#8A7358",
+    "gold": "#C08A4A",
+    "line": "#2E2318",
+    "paper": "#0E0B08"
+  },
+  "type": {
+    "T1": 72,
+    "T2": 26,
+    "T3": 16,
+    "T4": 12
+  },
+  "font": {
+    "family": "Noto Serif SC",
+    "path_hint": "C:\\Windows\\Fonts\\NotoSerifSC-VF.ttf"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 1600,
+    "margin": 72
+  },
+  "paths": {
+    "assets": "assets",
+    "out": "out"
+  },
+  "copy": {
+    "cover_title": "38 mm",
+    "cover_spec": "表径 38 · 厚 10.8 · 表带 20 · 重 68 g",
+    "cover_line": "自动上链 · 40 小时动力储存 · 蓝宝石单面防眩 · 5 ATM",
+    "cover_evidence": "依据：方案设定值，非实测",
+    "p02_title": "表径 38 mm：同级普遍 40–44",
+    "p02_gain": "收益：袖口内径 42 mm 以上不顶壳。",
+    "p02_cost": "代价：机芯空间更小，摆轮直径被压缩，走时更难调稳。",
+    "p02_use": "适用：手腕周长 15–18 cm；超过 19 cm 建议换 20 mm 表带。",
+    "p02_evidence": "依据：同级公开规格 40–44 mm · 本表参数为方案设定值，非实测",
+    "p06_big": "40",
+    "p06_unit": "小时",
+    "p06_title": "动力储存：静置一夜仍在走。",
+    "p06_detail": "日常佩戴 8 小时即可上满；满弦后平放 40 小时不停表。",
+    "_注": "这些文案在脚本里仍以字面量出现（路线 1.5 未接线）；此文件是唯一真源，改完按 README 的映射表替换"
+  },
+  "name": "观时 GUĀNSHÍ（暗调腕表 · 17 页）",
+  "pages": 16,
+  "_页数说明": "示例含 00 设计思路 + 01–15 = 16 页；定稿的 17 页多一张「作品集封面」，见 templates/proposal-cover.py"
+}

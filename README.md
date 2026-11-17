@@ -28,6 +28,10 @@
 SKILL.md                 主文档：失败模式 / 两个裁判 / 六阶段门禁 / 铁律
 CHANGELOG.md             变更记录
 
+examples/
+  watch/                  暗调腕表 16 页（素材 + 脚本 + config + 一键脚本）
+  nanzhi/                 亮调香水 11 页（含"旧页面改造"两段流程）
+
 reference/
   input-contract.md        输入契约：素材五样 + 四条拒收
   样例-输入契约-观时.md     填好的契约（照着改）
@@ -54,6 +58,19 @@ templates/
   page-skeleton.py         页面骨架（可跑，亮底/暗底）
   pitfall-template.md      踩坑入库格式
 ```
+
+---
+
+## 两个可直接复现的示例（`examples/`）
+
+```bash
+cd examples/watch  && python scripts/run_all.py      # 暗调腕表：16 页 + 长图 1200×25192
+cd examples/nanzhi && python scripts/build_pages.py && python scripts/build_final.py
+                                                     # 亮调香水：11 页（从旧电商页改造）
+```
+
+两个示例都带**素材 + 脚本 + config.json**，换台机器跑一遍能出同样的页面。
+改色板/字号/画布改 `config.json`；改文案改脚本（路线 1.5 的范围，见各示例 README 的"已知限制"）。
 
 ---
 

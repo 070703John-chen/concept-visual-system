@@ -1,0 +1,47 @@
+{
+  "_说明": "色板/字号/文案/路径都在这里。改文案改 copy，改配色改 palette，改字号改 type。页面布局坐标仍在脚本里（路线 1.5 的范围）。",
+  "palette": {
+    "ink": "#221A14",
+    "fg": "#221A14",
+    "sub": "#64523A",
+    "gold": "#986C3A",
+    "line": "#AA906E",
+    "paper": "#EEE6D6"
+  },
+  "type": {
+    "T1": 72,
+    "T2": 26,
+    "T3": 16,
+    "T4": 12
+  },
+  "font": {
+    "family": "Noto Serif SC",
+    "path_hint": "C:\\Windows\\Fonts\\NotoSerifSC-VF.ttf"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 1600,
+    "margin": 72
+  },
+  "paths": {
+    "assets": "assets",
+    "out": "out"
+  },
+  "copy": {
+    "cover_title": "雨后木质",
+    "cover_notes": "雪松 · 苔藓 · 白麝香",
+    "cover_spec": "50 ML · EAU DE PARFUM 12% · 留香 6–8 小时",
+    "p02_title": "香调分析",
+    "p02_facts": [
+      "○ 前调占比 30%",
+      "○ 中调占比 45%",
+      "○ 后调占比 25%",
+      "○ 留香 6–8 小时"
+    ],
+    "p03_title": "玻璃、金属、纸",
+    "p05_title": "两款香型，同一套瓶型与标签",
+    "_注": "文案仍在脚本字面量里（路线 1.5 未接线）"
+  },
+  "name": "南枝 NÁNZHÍ（亮调香水 · 11 页）",
+  "pages": 11
+}

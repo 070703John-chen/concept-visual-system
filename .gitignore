@@ -5,17 +5,13 @@ __pycache__/
 .venv/
 venv/
 
-# 输出产物
-out/
-output/
-*.log
+# 示例产物（可重新生成，不进仓库）
+examples/*/out/
 
 # 临时与系统
 .DS_Store
 Thumbs.db
 desktop.ini
+*.log
 
-# 项目素材（体积大，不进仓库）
-assets/
-*.jpg
-*.png
+# 说明：examples/*/assets 里的素材要进仓库（复现所需），不要忽略
