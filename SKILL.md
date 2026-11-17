@@ -5,7 +5,7 @@ description: >
   包含五种页面类型、四档字号、色彩统一参数、图像位矩阵、信息分级、文案句式、连续长图合成、文案扫描器、质量检查清单与已知问题库。
   适用于：作品集、概念提案、视觉系统搭建、A+ 或详情页结构；需要多页视觉一致的项目；将旧电商页面改造为品牌手册。
   Triggers: 视觉系统 / 概念设计 / 作品集 / 一套图 / 图像位矩阵 / 长图 / 连续背景 / 色彩统一 / A+ 页面 / 视觉提案 / 品牌手册 / 旧页面改造
-version: 1.7.0
+version: 1.8.0
 ---
 
 # 自命题视觉系统（Concept Visual System）
@@ -295,6 +295,7 @@ reference/style-anchor/       风格锚点图 5 张
 docs/STYLE.md                 书写规范（五项原则与禁止项）
 docs/GLOSSARY.md              术语对照表（四类，含英文）
 docs/TOOLCHAIN.md             工具链与许可（按阶段）
+docs/GENERATION.md            素材生成与溯源（prompts.jsonl 结构、裁决标准）
 docs/HANDOFF-1.3.0.md         交付说明（"同一棚拍的光"给它看，别用文字描述）
 examples/watch/prompts/       手表生图提示词（身份锁 / 场景锁 / 创意锁）
 examples/nanzhi/prompts/      香水生图提示词

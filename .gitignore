@@ -21,3 +21,6 @@ desktop.ini
 
 # 说明：examples/*/assets 与 examples/*/reference 都要进仓库
 #      —— 前者是复现输入，后者是复现基准，少了任一个 reproduce.py 都跑不了
+
+# 生成的原始素材：待人工裁决，不入库
+examples/*/assets/gen/

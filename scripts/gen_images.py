@@ -87,6 +87,7 @@ def call_api(key, prompt, n=1, aspect="3:4"):
         "aspect_ratio": aspect,
         "response_format": "url",
         "n": max(1, min(4, n)),
+        "prompt_optimizer": True,
     }).encode("utf-8")
     req = urllib.request.Request(API_URL, data=body, method="POST", headers={
         "Authorization": f"Bearer {key}",

@@ -4,6 +4,27 @@
 
 ---
 
+## 1.8.0 — 2026-11-18
+
+**新增：素材生成的批量执行与溯源**
+- `scripts/gen_batch.py`：按 `prompts.jsonl` 批量生成，按 asset 命名，
+  逐条回写 `files` 与 `verdict`，支持 `--only` / `--force` / `--dry-run` / `--mark`，可中断续跑
+- `examples/*/prompts.jsonl`：素材溯源记录（asset → 提示词 → 页面 → 裁决）
+  手表 6 条按类别补录（`granularity: category`，如实标注无法逐张重生成）；
+  香水 6 条为逐张记录
+- `docs/GENERATION.md`：数据结构、执行方式、四项裁决判据、与排版阶段的接口
+- `gen_images.py` 补 `prompt_optimizer`，与既有调用参数一致
+- `.gitignore` 排除 `examples/*/assets/gen/`：未裁决素材不得被页面脚本引用
+
+**实测结果（一次真实调用）**
+- 单条生成成功：864×1152，87 KB
+- 负向约束生效：标签区为空白，无虚构文本
+- 一致性未通过：瓶型与既有系列不同，裁决 `rejected` 并记录理由
+- 结论：素材生成可用；同一产品多角度一致性仍为结构性限制
+
+**修正**
+- 首次调用因 DNS 解析失败（`getaddrinfo failed`）中止，重试成功；该失败未做静默重试，如实报错
+
 ## 1.7.0 — 2026-11-18
 
 **新增：工具链与许可**

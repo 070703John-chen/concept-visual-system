@@ -1,0 +1,6 @@
+{"asset": "g-03-hero", "page": "01-hero", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：38mm 圆形自动机械腕表，黑色 PVD 精钢表壳，镂空盘面，黑色牛皮表带。场景锁：深色胡桃木桌面，左上 45 度暖色侧光，背景近黑，浅景深。创意锁：盘面被打开，齿轮为首要记忆点。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}
+{"asset": "g-05-exploded", "page": "05-spec", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：同一支表的机芯零件（主夹板、齿轮系、擒纵、摆轮、发条盒）分层悬浮。场景锁：纯黑无缝背景，顶光加微弱轮廓光，无投影。创意锁：结构可查。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}
+{"asset": "g-08-side", "page": "08-feature", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：同一支表的正侧面视图，表壳侧面轮廓完整，表冠可见。场景锁：深棕背景，单侧硬光压出壳壁高光，45 度俯视。创意锁：厚度可量。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}
+{"asset": "g-11-detail", "page": "11-feature", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：表耳、表带缝线、表冠滚花微距。场景锁：极浅景深，单一光源，背景完全虚化。创意锁：经得起放大。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}
+{"asset": "g-s7-hand", "page": "10-grid", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：同一支表戴于手腕，手腕周长 15 至 18cm 参考。场景锁：室内暖光，深色木质桌面。创意锁：真实尺度参照。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}
+{"asset": "bg-cabin", "page": "13-hero", "aspect": "3:4", "n": 1, "granularity": "category", "prompt": "身份锁：无产品。场景锁：木屋室内墙面与灯笼暖光，虚焦，可作文字底板。创意锁：提供可承载文本的暗部。", "verdict": "pending", "note": "历史素材，提示词按类别补录"}

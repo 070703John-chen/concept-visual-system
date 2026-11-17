@@ -10,7 +10,7 @@
 | 阶段 | 工具 | 许可证 | 本项目 | 说明 |
 |---|---|---|---|---|
 | 素材生成 | 即梦 Seedream 5.0（网页版） | 商业服务 | 使用 | 需人工操作，无 API |
-| 素材生成 | MiniMax image-01（API） | 商业服务 | 使用 | `scripts/gen_images.py` 封装 |
+| 素材生成 | MiniMax image-01（API） | 商业服务 | 使用 | `scripts/gen_images.py` 单条；`scripts/gen_batch.py` 按矩阵批量并回写溯源 |
 | 素材生成（替代） | ComfyUI | GPL-3.0 | 未使用 | 本地推理图形界面，需独立显卡 |
 | 素材生成（替代） | Stable Diffusion WebUI (AUTOMATIC1111) | AGPL-3.0 | 未使用 | 同上；AGPL 对分发有传染性约束 |
 | 素材生成（替代） | Stable Diffusion 权重 | CreativeML Open RAIL-M | 未使用 | 使用限制条款见许可原文 |
