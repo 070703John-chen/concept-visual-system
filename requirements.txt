@@ -1,2 +1,4 @@
-Pillow>=9.5
-numpy>=1.24
+# 钉死的版本 —— 与发布包定稿的生成环境一致（Python 3.11.9）
+# 改版本前先跑 scripts/reproduce.py --case watch / nanzhi，两边都 PASS 才算换成功
+Pillow==9.5.0
+numpy==1.26.4

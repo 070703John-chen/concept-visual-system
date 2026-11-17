@@ -1,0 +1,113 @@
+{
+ "project": "观时 GUĀNSHÍ · 自命题概念设计",
+ "version": "定稿 v6 · 2026-11-12",
+ "pages": 17,
+ "long": {
+  "file": "长图-17页.jpg",
+  "size": "1200x25438"
+ },
+ "files": [
+  {
+   "page": "00",
+   "file": "00-cover.jpg",
+   "name": "作品集封面",
+   "bytes": 307367
+  },
+  {
+   "page": "01",
+   "file": "01-hero.jpg",
+   "name": "封面",
+   "bytes": 570140
+  },
+  {
+   "page": "02",
+   "file": "02-feature.jpg",
+   "name": "表径 38",
+   "bytes": 258481
+  },
+  {
+   "page": "03",
+   "file": "03-hero.jpg",
+   "name": "镂空盘面",
+   "bytes": 420434
+  },
+  {
+   "page": "04",
+   "file": "04-grid.jpg",
+   "name": "材料与工艺",
+   "bytes": 363967
+  },
+  {
+   "page": "05",
+   "file": "05-spec.jpg",
+   "name": "机芯五件事",
+   "bytes": 290657
+  },
+  {
+   "page": "06",
+   "file": "06-hero.jpg",
+   "name": "动力储存",
+   "bytes": 328871
+  },
+  {
+   "page": "07",
+   "file": "07-spec.jpg",
+   "name": "三处尺寸",
+   "bytes": 304209
+  },
+  {
+   "page": "08",
+   "file": "08-feature.jpg",
+   "name": "厚度",
+   "bytes": 342970
+  },
+  {
+   "page": "09",
+   "file": "09-spec.jpg",
+   "name": "五种表面",
+   "bytes": 295033
+  },
+  {
+   "page": "10",
+   "file": "10-grid.jpg",
+   "name": "场景",
+   "bytes": 361194
+  },
+  {
+   "page": "11",
+   "file": "11-feature.jpg",
+   "name": "微距",
+   "bytes": 710521
+  },
+  {
+   "page": "12",
+   "file": "12-brand.jpg",
+   "name": "封底",
+   "bytes": 220548
+  },
+  {
+   "page": "13",
+   "file": "13-hero.jpg",
+   "name": "三种光",
+   "bytes": 454190
+  },
+  {
+   "page": "14",
+   "file": "14-doc.jpg",
+   "name": "字与格",
+   "bytes": 246353
+  },
+  {
+   "page": "15",
+   "file": "15-mono.jpg",
+   "name": "黑白",
+   "bytes": 513300
+  },
+  {
+   "page": "17",
+   "file": "17-doc.jpg",
+   "name": "设计思路",
+   "bytes": 430933
+  }
+ ]
+}

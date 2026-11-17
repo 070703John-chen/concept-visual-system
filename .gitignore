@@ -8,10 +8,16 @@ venv/
 # 示例产物（可重新生成，不进仓库）
 examples/*/out/
 
+# 密钥
+.env
+*.env
+!.env.example
+
 # 临时与系统
 .DS_Store
 Thumbs.db
 desktop.ini
 *.log
 
-# 说明：examples/*/assets 里的素材要进仓库（复现所需），不要忽略
+# 说明：examples/*/assets 与 examples/*/reference 都要进仓库
+#      —— 前者是复现输入，后者是复现基准，少了任一个 reproduce.py 都跑不了

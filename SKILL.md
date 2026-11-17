@@ -6,7 +6,7 @@ description: >
   适用于：作品集/提案/自命题概念设计、视觉系统搭建、亚马逊 A+ 或详情页结构、需要「一整套图看起来像同一个棚拍的」的任何产品、
   以及把一套旧电商页面救成品牌手册。
   Triggers: 视觉系统 / 概念设计 / 作品集 / 一套图 / 图位矩阵 / 长图 / 连续背景 / 统一调色 / A+ 页面 / 视觉提案 / 品牌手册 / 旧页面改造
-version: 1.2.0
+version: 1.3.0
 ---
 
 # 自命题视觉系统（Concept Visual System）
@@ -230,10 +230,57 @@ python scripts/checkcopy.py <项目目录> --ext .py,.md
 
 ---
 
-## 十二、一键开工顺序
+## 十二、AI 硬限制（生成段的边界，别指望提示词解决）
+
+这些不是"提示词没写好"，是当前模型的硬限制。写进流程，才不会白烧图。
+
+**① 正面表盘必然编假字**
+```
+现象：生成正面表盘，100% 出现假品牌名、假日历窗、假刻度数字
+处理：提示词固定加 → no text, no letters, no numbers, no brand name, no logo
+      仍然出现 → 只用来做"局部裁切"（裁掉盘面中心），或整张弃用
+      绝不允许：把带假字名的图直接放进成品
+```
+
+**② 同一产品多角度做不出来**
+```
+现象：换角度重生成，瓶型/壳型/表耳会变，不是同一支
+处理：能用的角度只有两类 —— ① 主图（抠出来复用）；② 不露完整轮廓的局部（盖内侧/纸盒/微距）
+      必须露多角度的页面 → 标注"概念演绎 · 非产品图"，或改用 3D，不要硬凑
+```
+
+**③ 标签、价格、包装文字一律编**
+```
+现象：瓶身标签、盒面文字会被编成无意义的字母串
+处理：先出无字版 → 用 Pillow 重绘标签（见 case-nanzhi 的 relabel 做法）
+      已经带字的图 → 只能裁掉或弃用
+```
+
+**④ 两次生成之间，光向会变**
+```
+现象：同一提示词跑两次，主光从左上跑到右上
+处理：不追一致性，改用统一调色（scripts/grade.py）把光向拉回来
+      这就是为什么"阶段 ⑥"比"提示词更精确"更重要
+```
+
+**⑤ 图里的东西"看起来对"，量出来不对**
+```
+现象：表径、瓶高、比例全凭感觉
+处理：任何尺寸类结论都标"方案设定值，非实测"，不许当数据用
+```
+
+**判断顺序**：能抠图复用的 → 走排版；只能局部用的 → 裁切；会露完整轮廓又要多角度的 → 换方案。
+**不要用"再生成一次"去解决结构性限制。**
+
+风格锚点图放 `reference/style-anchor/`（5 张）：文字描述不出"同一棚拍的光"，得给它看。
+
+---
+
+## 十三、一键开工顺序
 
 ```
 0. 跑 scripts/preflight.py                  → 环境/字体/目录自检，不过就停下
+0b. 跑 scripts/bootstrap_fonts.py           → 字体缺失就下载（钉 SHA-256）
 1. 跑 scripts/checkcopy.py <素材/文案目录>   → 先清掉旧文案里的禁用词
 2. 读 reference/input-contract.md           → 收齐五样素材
 3. 读 reference/page-types.md + templates/矩阵.csv → 定 N 页矩阵
@@ -245,11 +292,12 @@ python scripts/checkcopy.py <项目目录> --ext .py,.md
 9. 读 reference/pitfalls.md                 → 交付前对照，别踩已知的坑
 10. 打包（页数校验 + manifest + 说明）
 11. 若改过任何脚本：跑 scripts/selftest.py → 15 项全过再交付
+12. 跑 scripts/reproduce.py --case watch|nanzhi → 必须 PASS（与定稿逐页比对）
 ```
 
 ---
 
-## 十三、目录
+## 十四、目录
 
 ```
 SKILL.md                      本文件（失败模式 / 两个裁判 / 六阶段门禁 / 铁律）
@@ -262,12 +310,18 @@ reference/copy-formulas.md    文案句式库（部位+动词+结果）
 reference/pitfalls.md         踩坑库（18 条，每条都真发生过）
 reference/case-watch.md       案例一：观时 17 页（暗调 / 强结构）
 reference/case-nanzhi.md      案例二：南枝 11 页（亮调 / 旧页改造）
+reference/style-anchor/       风格锚点图 5 张（"同一棚拍的光"给它看，别用文字描述）
+examples/watch/prompts/       手表生图提示词（身份锁 / 场景锁 / 创意锁）
+examples/nanzhi/prompts/      香水生图提示词
 reference/样例-输入契约-观时.md  填好的输入契约（照着改，别空着手开工）
 
 scripts/grade.py              统一调色（可跑）
 scripts/compose_long.py       连续背景长图合成（可跑）
 scripts/checkcopy.py          文案禁用词扫描（可跑，命中退出码 1）
 scripts/preflight.py          开工前自检（环境/字体/目录/磁盘）
+scripts/bootstrap_fonts.py    字体引导（缺失时按固定来源下载 + SHA-256 校验）
+scripts/gen_images.py         素材生成（MiniMax image-01；无 key 时 --no-gen 只列清单）
+scripts/reproduce.py          复现验收（重跑 → 与 reference/ 逐页比对 → PASS/FAIL）
 scripts/selftest.py           冒烟测试（15 项，改脚本后必跑）
 scripts/make_transparent.md   页面透明化改造要点
 

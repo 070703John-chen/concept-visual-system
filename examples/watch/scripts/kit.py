@@ -5,7 +5,33 @@
 import math
 from PIL import Image, ImageDraw, ImageFont
 
-SERIF = r"C:\Windows\Fonts\NotoSerifSC-VF.ttf"
+import os as _os
+
+def _resolve_font():
+    """字体解析：CVS_FONT → <repo>/assets/fonts/ → 系统路径。找不到就报错，不静默降级。"""
+    env = _os.environ.get("CVS_FONT")
+    if env and _os.path.exists(env):
+        return env
+    here = _os.path.dirname(_os.path.abspath(__file__))
+    root = _os.path.dirname(_os.path.dirname(_os.path.dirname(here)))   # examples/<case>/scripts → repo
+    fdir = _os.path.join(root, "assets", "fonts")
+    if _os.path.isdir(fdir):
+        files = [f for f in _os.listdir(fdir) if f.lower().endswith((".otf", ".ttf", ".ttc"))]
+        if files:
+            prefer = ["NotoSerifSC-VF.ttf", "NotoSerifCJKsc-Regular.otf", "SourceHanSerifSC-Regular.otf"]
+            files.sort(key=lambda f: (prefer.index(f) if f in prefer else 99, f))
+            return _os.path.join(fdir, files[0])
+    for c in [r"C:\Windows\Fonts\NotoSerifSC-VF.ttf",
+              r"C:\Windows\Fonts\NotoSerifCJKsc-Regular.otf",
+              r"C:\Windows\Fonts\SourceHanSerifSC-Regular.otf",
+              r"C:\Windows\Fonts\simsun.ttc",
+              "/System/Library/Fonts/Supplemental/Songti.ttc",
+              "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"]:
+        if _os.path.exists(c):
+            return c
+    raise SystemExit("找不到中文字体：设置 CVS_FONT，或 python scripts/bootstrap_fonts.py --allow-download")
+
+SERIF = _resolve_font()
 INK, SUB, GOLD, LINE = "#EFE3CE", "#8A7358", "#C08A4A", "#2E2318"
 
 def S(sz, w="Regular"):

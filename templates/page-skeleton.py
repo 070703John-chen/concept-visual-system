@@ -24,7 +24,10 @@ except ImportError:
 W, H, M = 1200, 1600, 72          # 画布与安全边距（铁律：边距 72）
 T1, T2, T3, T4 = 72, 26, 16, 12   # 四档字号（不许加第五档）
 
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONT_CANDIDATES = [
+    os.path.join(_ROOT, "assets", "fonts", "NotoSerifSC-VF.ttf"),
+    os.path.join(_ROOT, "assets", "fonts", "NotoSerifCJKsc-Regular.otf"),
     r"C:\Windows\Fonts\NotoSerifSC-VF.ttf",
     r"C:\Windows\Fonts\SourceHanSerifSC-Regular.otf",
     r"C:\Windows\Fonts\simsun.ttc",

@@ -51,12 +51,15 @@
 ## 两个可直接复现的示例（`examples/`）
 
 ```bash
-cd examples/watch  && python scripts/run_all.py      # 暗调腕表：16 页 + 长图 1200×25192
-cd examples/nanzhi && python scripts/build_pages.py && python scripts/build_final.py
-                                                     # 亮调香水：11 页（从旧电商页改造）
+# 验收（这一条就够）：重跑 + 与定稿基准逐页比对
+python scripts/reproduce.py --case watch     # 17 页 + 长图 1200×25438
+python scripts/reproduce.py --case nanzhi    # 11 页 + 长图 1200×17800
 ```
 
-两个示例都带**素材 + 脚本 + config.json**，换台机器跑一遍能出同样的页面。
+`reference/` 里放的是发布包里的**定稿成品**，`reproduce.py` 会逐页比高度与像素差（≤6/255 判 PASS）。
+两个示例都带**素材 + 脚本 + config.json**，换台机器跑一遍能出与定稿一致的页面。
+
+**基线说明**：手表示例是 17 页（含作品集封面 `00-cover`），长图 1200×25438 —— 与定稿 v6 完全一致。
 改色板/字号/画布改 `config.json`；改文案改脚本（路线 1.5 的范围，见各示例 README 的"已知限制"）。
 
 ---
@@ -89,6 +92,9 @@ scripts/
   compose_long.py          连续背景长图 + 切回单页
   checkcopy.py             文案禁用词扫描（命中即退出码 1）
   selftest.py              冒烟测试（15 项，改脚本后必跑）
+  bootstrap_fonts.py       字体引导（固定来源 + SHA-256）
+  gen_images.py            素材生成（MiniMax image-01）
+  reproduce.py             复现验收（与 reference/ 逐页比对）
   make_transparent.md      页面透明化要点
 
 templates/
@@ -127,8 +133,25 @@ python scripts/checkcopy.py ./src --ext .py,.md
 python scripts/selftest.py
 ```
 
-**依赖**：Python 3.9+ / Pillow / numpy / 一个中文字体（思源宋体优先）。
-找不到字体会**报错退出**，不会静默降级出方块字。
+**依赖**：Python 3.11.9 / `Pillow==9.5.0` / `numpy==1.26.4`（钉死，见 requirements.txt）/ 一个中文字体。
+
+```bash
+python scripts/bootstrap_fonts.py                   # 先看本机有没有思源宋体
+python scripts/bootstrap_fonts.py --allow-download  # 没有就下到 assets/fonts/（可钉 SHA-256）
+```
+
+字体解析顺序：`CVS_FONT` → `assets/fonts/` → 系统路径 → **报错退出**（不静默降级出方块字）。
+
+**素材从哪来**（生图段）：
+
+```bash
+python scripts/gen_images.py --check                                    # 看 key 配没配
+python scripts/gen_images.py --prompts examples/watch/prompts/README.txt --out ./gen
+python scripts/gen_images.py --prompts examples/watch/prompts/README.txt --no-gen   # 无 key 只列清单
+```
+
+提示词按「身份锁 / 场景锁 / 创意锁」三段写，负向固定带 `no text, no letters, no numbers, no brand name`。
+模型硬限制见 `SKILL.md` 第十二节（正面表盘必编假字、多角度无法一致）。
 
 ---
 

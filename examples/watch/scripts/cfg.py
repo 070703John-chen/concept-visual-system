@@ -10,8 +10,8 @@ _CFG_PATH = os.path.join(_ROOT, "config.json")
 with open(_CFG_PATH, encoding="utf-8") as f:
     CFG = json.load(f)
 
-ASSETS = os.path.join(_ROOT, CFG.get("paths", {}).get("assets", "assets"))
-OUT = os.path.join(_ROOT, CFG.get("paths", {}).get("out", "out"))
+ASSETS = os.environ.get("CVS_ASSETS") or os.path.join(_ROOT, CFG.get("paths", {}).get("assets", "assets"))
+OUT = os.environ.get("CVS_OUT") or os.path.join(_ROOT, CFG.get("paths", {}).get("out", "out"))
 os.makedirs(OUT, exist_ok=True)
 
 PALETTE = CFG.get("palette", {})
