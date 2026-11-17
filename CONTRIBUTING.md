@@ -12,6 +12,16 @@
 3. python --version 与 pip show pillow numpy 的输出
 ```
 
+## 提交前闸门
+
+```bash
+python scripts/install_hooks.py    # 每个 clone 执行一次，安装 git pre-commit 钩子
+python scripts/precommit.py        # 手动执行同一套校验
+```
+
+五项校验：文档规范、文案禁用词、脚本冒烟、watch 复现、nanzhi 复现。
+任一失败即中止提交；`git commit --no-verify` 可跳过，但不应使用。
+
 ## 提 PR
 
 ```
