@@ -1,0 +1,38 @@
+name: selftest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 下载中文字体（思源宋体）
+        shell: pwsh
+        run: |
+          $u = "https://github.com/notofonts/noto-cjk/raw/main/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Regular.otf"
+          $dst = "$env:RUNNER_TEMP\NotoSerifCJKsc-Regular.otf"
+          Invoke-WebRequest -Uri $u -OutFile $dst -TimeoutSec 300
+          Copy-Item $dst "C:\Windows\Fonts\SourceHanSerifSC-Regular.otf" -Force -ErrorAction SilentlyContinue
+          Write-Host "字体大小: $((Get-Item $dst).Length) 字节"
+
+      - name: preflight 自检
+        run: python scripts/preflight.py --out-dir .
+
+      - name: 冒烟测试
+        run: python scripts/selftest.py
+
+      - name: 文案禁用词自检
+        run: python scripts/checkcopy.py . --ext .md,.py,.txt

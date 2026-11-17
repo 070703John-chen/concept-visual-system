@@ -2,11 +2,37 @@
 
 **一套把「N 张各自还行的图」做成「一个品牌」的流程。**
 
-不是提示词库，也不是模板合集。它是一份可执行的工作手册 + 三个能真跑的脚本：
+![两个案例：暗调腕表 16 页 / 亮调香水 11 页](docs/hero.jpg)
+
+不是提示词库，也不是模板合集。它是一份可执行的工作手册 + 五个能真跑的脚本：
 从输入契约、图位矩阵，到统一调色、连续背景长图，再到交付前的机器自检。
 
 > 来自两次真实交付：一个虚构腕表品牌（暗调，17 页 + 1200×25438 长图）、
 > 一个虚构香水品牌（亮调，11 页 + 1200×17800 长图，从旧电商页改造）。
+
+---
+
+## 效果预览
+
+**案例一 · 观时 GUĀNSHÍ（暗调腕表）**
+
+| 封面 | 机芯分解 |
+|---|---|
+| ![](docs/watch-01-cover.jpg) | ![](docs/watch-02-spec.jpg) |
+
+| 单色页 | 主视觉 |
+|---|---|
+| ![](docs/watch-03-mono.jpg) | ![](docs/watch-04-keyvisual.jpg) |
+
+**案例二 · 南枝 NÁNZHÍ（亮调香水）**
+
+| 封面 | 双香型 |
+|---|---|
+| ![](docs/nanzhi-01-cover.jpg) | ![](docs/nanzhi-02-cards.jpg) |
+
+| 冷调款 | 封底 |
+|---|---|
+| ![](docs/nanzhi-03-cool.jpg) | ![](docs/nanzhi-04-back.jpg) |
 
 ---
 
@@ -22,11 +48,26 @@
 
 ---
 
+## 两个可直接复现的示例（`examples/`）
+
+```bash
+cd examples/watch  && python scripts/run_all.py      # 暗调腕表：16 页 + 长图 1200×25192
+cd examples/nanzhi && python scripts/build_pages.py && python scripts/build_final.py
+                                                     # 亮调香水：11 页（从旧电商页改造）
+```
+
+两个示例都带**素材 + 脚本 + config.json**，换台机器跑一遍能出同样的页面。
+改色板/字号/画布改 `config.json`；改文案改脚本（路线 1.5 的范围，见各示例 README 的"已知限制"）。
+
+---
+
 ## 目录
 
 ```
 SKILL.md                 主文档：失败模式 / 两个裁判 / 六阶段门禁 / 铁律
 CHANGELOG.md             变更记录
+
+docs/                    预览图（README 用）
 
 examples/
   watch/                  暗调腕表 16 页（素材 + 脚本 + config + 一键脚本）
@@ -47,7 +88,7 @@ scripts/
   grade.py                 统一调色（黑位/高光/冷暖分离/暗角/锐化）
   compose_long.py          连续背景长图 + 切回单页
   checkcopy.py             文案禁用词扫描（命中即退出码 1）
-  selftest.py              冒烟测试（14 项，改脚本后必跑）
+  selftest.py              冒烟测试（15 项，改脚本后必跑）
   make_transparent.md      页面透明化要点
 
 templates/
@@ -61,22 +102,12 @@ templates/
 
 ---
 
-## 两个可直接复现的示例（`examples/`）
-
-```bash
-cd examples/watch  && python scripts/run_all.py      # 暗调腕表：16 页 + 长图 1200×25192
-cd examples/nanzhi && python scripts/build_pages.py && python scripts/build_final.py
-                                                     # 亮调香水：11 页（从旧电商页改造）
-```
-
-两个示例都带**素材 + 脚本 + config.json**，换台机器跑一遍能出同样的页面。
-改色板/字号/画布改 `config.json`；改文案改脚本（路线 1.5 的范围，见各示例 README 的"已知限制"）。
-
----
-
 ## 快速开始
 
 ```bash
+# 0. 装依赖
+pip install -r requirements.txt
+
 # 1. 自检（缺什么会直接说）
 python scripts/preflight.py --out-dir ./out
 
