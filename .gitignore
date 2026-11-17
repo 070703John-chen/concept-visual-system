@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 输出产物
+out/
+output/
+*.log
+
+# 临时与系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 项目素材（体积大，不进仓库）
+assets/
+*.jpg
+*.png
