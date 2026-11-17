@@ -25,6 +25,7 @@ except Exception:
     pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
 GRADE = os.path.join(HERE, "grade.py")
 COMPOSE = os.path.join(HERE, "compose_long.py")
 PY = sys.executable
@@ -95,7 +96,7 @@ def main():
 
     try:
         # ---- 1) grade ----
-        print("[1/3] grade.py 统一调色")
+        print("[1/4] grade.py 统一调色")
         src_dir = os.path.join(tmp, "src")
         os.makedirs(src_dir, exist_ok=True)
         samples = make_samples(src_dir)
@@ -115,7 +116,7 @@ def main():
                 check("无 NaN / 全黑", b.max() > 10 and not np.isnan(b).any())
 
         # ---- 2) compose_long ----
-        print("\n[2/3] compose_long.py 连续背景长图")
+        print("\n[2/4] compose_long.py 连续背景长图")
         page_dir = os.path.join(tmp, "pages")
         os.makedirs(page_dir, exist_ok=True)
         pages = make_pages(page_dir)
@@ -146,8 +147,13 @@ def main():
                     s = Image.open(os.path.join(page_dir, sorted(back)[0]))
                     check("切回单页尺寸正确", s.width == 1200, str(s.size))
 
-        # ---- 3) 文案扫描器 ----
-        print("\n[3/3] checkcopy.py 禁用词扫描")
+        # ---- 3) 文档规范 ----
+        print("\n[3/4] checkregister.py 文档规范")
+        code, log = run([PY, os.path.join(HERE, "checkregister.py"), ROOT])
+        check("文档规范校验通过", code == 0, (log or "").strip()[-200:])
+
+        # ---- 4) 文案扫描器 ----
+        print("\n[4/4] checkcopy.py 禁用词扫描")
         bad = os.path.join(tmp, "bad.py")
         with open(bad, "w", encoding="utf-8") as f:
             f.write('d.text((M, 92), "高级质感 · 行业第一", font=S(40))\n')  # checkcopy:ignore 测试用故意违规串

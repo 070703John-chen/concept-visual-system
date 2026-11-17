@@ -25,7 +25,7 @@ python scripts/bootstrap_fonts.py --print-sha256    # 拿 SHA-256
 <64位 sha256>  NotoSerifCJKsc-Regular.otf
 ```
 
-## 为什么钉死
+## 版本锁定的必要性
 
 同一句文案，字体不同 → 字宽不同 → 折行不同 → 整页版式错位。
 `layout-specs.md` 的像素规格全部基于思源宋体推导，换字体即失效。

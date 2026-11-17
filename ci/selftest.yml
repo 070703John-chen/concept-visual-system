@@ -34,6 +34,9 @@ jobs:
       - name: 冒烟测试
         run: python scripts/selftest.py
 
+      - name: 文档规范校验
+        run: python scripts/checkregister.py .
+
       - name: 文案禁用词自检
         run: python scripts/checkcopy.py . --ext .md,.py,.txt
 

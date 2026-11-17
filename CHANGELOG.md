@@ -64,7 +64,7 @@ python scripts/selftest.py                     → 全部通过
 - `scripts/preflight.py` 开工前自检：Python / Pillow / numpy / 中文字体 / 输出目录可写 / 磁盘剩余
 - `scripts/selftest.py` 冒烟测试：14 项检查跑通三个脚本（合成样图，不依赖真实素材）
 - `templates/矩阵-观时17页.csv` 填好的图位矩阵样例
-- `templates/pitfall-template.md` 踩坑入库格式（症状/原因/处理/验证 四段）
+- `templates/pitfall-template.md` 已知问题入库格式（症状/原因/处理/验证 四段）
 - `reference/样例-输入契约-观时.md` 填好的输入契约
 - SKILL.md 新增「十一、依赖与自检」；开工顺序前插 preflight
 
@@ -107,12 +107,12 @@ python scripts/selftest.py                     → 全部通过
 **首次成文**（观时 17 页交付后整理）
 
 - 六阶段流程、五种页面类型、四档字号、统一调色参数、连续背景长图
-- `reference/`：输入契约 / 页面类型 / 版式规格 / 文案公式 / 踩坑库 / 手表案例
+- `reference/`：输入契约 / 页面类型 / 版式规格 / 文案句式 / 已知问题库 / 手表案例
 - `scripts/`：`grade.py`（统一调色）、`compose_long.py`（连续背景长图）、`make_transparent.md`
 
 **当时的判断**
 - 阶段 ⑥（统一收口）是这套方法与"一叠各自为政的图"的分界，必须单列成阶段
-- 踩坑库优先于技巧库：18 条都是真发生过的，不是推演的
+- 已知问题优先于技巧条目：18 条均为实际发生，非推演
 
 ---
 
