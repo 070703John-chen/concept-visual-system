@@ -14,7 +14,7 @@
 ## 1. 变更范围
 
 上一版（v1.2.1）满足"结构完整"，但不满足"可复现"：示例产出的成品与定稿不一致，
-且排版链缺透明化、生图、字体解析三段。本版按四个断点逐项修复。
+且版式设计链缺透明化、生图、字体解析三段。本版按四个断点逐项修复。
 
 ### 1.1 基线对齐（断点一）
 
@@ -51,7 +51,7 @@
 - `scripts/gen_images.py`：MiniMax `image-01`，`--check` / `--no-gen` 两条无密钥退路
 - `examples/watch/prompts/README.txt`、`examples/nanzhi/prompts/README.txt`：身份锁 / 场景锁 / 创意锁三段式
 - `.env.example`；`.env` 已入 `.gitignore`
-- `SKILL.md` 第十二节「AI 硬限制」：五条结构性限制与判定顺序
+- `SKILL.md` 第十二节「AI 结构性限制」：五条结构性限制与判定顺序
 - `reference/style-anchor/`：5 张风格锚点图
 
 ---
@@ -110,7 +110,7 @@ checkcopy.py                    → 退出码 0（50 文件 0 命中）
 | L1 | 文案仍为脚本字面量，`config.json` 的 `copy` 未接线 | 改文案需改 Python | 有意为之：保住"定稿即此代码产出"的可验证性 |
 | L2 | 字体不入库（授权与体积） | 新设备需 `bootstrap_fonts.py` 或自备 | 已提供下载与 SHA-256 校验 |
 | L3 | CI 未启用 | 无自动化绿灯 | `.github/workflows` 需 `workflow` scope，token 不具备 |
-| L4 | 生图需 `MINIMAX_API_KEY` | 无密钥只能排版 | `--no-gen` 退路已实现 |
+| L4 | 生图需 `MINIMAX_API_KEY` | 无密钥只能版式设计 | `--no-gen` 退路已实现 |
 | L5 | 未发布在线 Demo | 访客只能看 `reference/长图.jpg` | GitHub Pages 属展示层，未纳入本版范围 |
 
 ---

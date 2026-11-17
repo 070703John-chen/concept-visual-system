@@ -12,7 +12,7 @@
 3. python --version 与 pip show pillow numpy 的输出
 ```
 
-## 提交前闸门
+## 提交前提交前校验
 
 ```bash
 python scripts/install_hooks.py    # 每个 clone 执行一次，安装 git pre-commit 钩子

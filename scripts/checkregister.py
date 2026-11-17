@@ -48,6 +48,33 @@ CODE_FENCE = re.compile(r"```.*?```", re.S)
 INLINE_CODE = re.compile(r"`[^`]*`")
 QUOTED = re.compile(r"「[^」]*」|\"[^\"]*\"|“[^”]*”")
 
+# 术语校验：日常表述 → 专业术语（对应 docs/GLOSSARY.md）
+TERMINOLOGY = {
+    "抠图": "去背",
+    "拼图": "图像合成",
+    "白底": "纯白背景",
+    "底色": "基色",
+    "贴图": "图像贴附",
+    "背景模糊": "背景虚化",
+    "模糊背景": "虚化背景",
+    "张数": "页面数量",
+    "图位": "图像位",
+    "图里": "图像中",
+    "字大小": "字号",
+    "字号档": "字号级",
+    "安全边距": "安全区",
+    "页边距": "版边距",
+    "一行字": "单行文本",
+    "文字块": "文本块",
+    "压暗": "降低明度",
+    "假字": "虚构文本",
+    "跑一遍": "执行",
+    "跑得通": "通过",
+    "对不上": "不一致",
+}
+
+SKIP_TERM_FILES = {"GLOSSARY.md", "STYLE.md", "CHANGELOG.md"}  # 术语表与变更记录需引用旧称
+
 HEADING = re.compile(r"^(#{1,6})\s+(.*)$", re.M)
 QUESTION_TAIL = re.compile(r"[？?]\s*$")
 IMPERATIVE_HEAD = re.compile(r"^(为什么|怎么|如何|别|不要|不许|要不要|能不能)")
@@ -102,6 +129,13 @@ def check_file(path, warn_only):
     for lineno, line in enumerate(body.splitlines(), 1):
         if BAD_PERCENT.search(line):
             hits.append((lineno, "数值格式", "全角百分号", "改为半角 %", line.strip()[:60]))
+
+    # 4) 术语
+    if os.path.basename(path) not in SKIP_TERM_FILES:
+        for lineno, line in enumerate(body.splitlines(), 1):
+            for a, b in TERMINOLOGY.items():
+                if a in line:
+                    hits.append((lineno, "术语", a, "改为「%s」" % b, line.strip()[:60]))
 
     if not hits:
         return 0, 0
