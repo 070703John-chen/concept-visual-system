@@ -100,7 +100,7 @@ def main():
     ap.add_argument("--case", required=True, choices=["watch", "nanzhi"])
     ap.add_argument("--only", help="只处理指定 page")
     ap.add_argument("--dry-run", action="store_true", help="只校验结构与统计")
-    ap.add_argument("--force", action="store_true", help="accepted 条目也重新生成")
+    ap.add_argument("--force", action="store_true", help="已裁决条目（accepted / rejected）也重新生成")
     ap.add_argument("--mark", nargs=2, metavar=("ASSET", "VERDICT"),
                     help="人工裁决某条：--mark g-03-hero accepted")
     ap.add_argument("--note", default="", help="配合 --mark 记录裁决理由")
@@ -150,11 +150,12 @@ def main():
         print("\n  未配置 MINIMAX_API_KEY，转入 dry-run（结构已校验）")
         return 0
 
+    # 默认只生成 pending：已裁决的条目（accepted / rejected）不重复消耗调用
     todo = [it for it in items
-            if (args.force or it["verdict"] != "accepted")
+            if (args.force or it["verdict"] == "pending")
             and (not args.only or it.get("page") == args.only)]
     if not todo:
-        print("\n  没有待生成条目（全部 accepted，或用 --force 覆盖）")
+        print("\n  没有待生成条目（全部已裁决，或用 --force 覆盖）")
         return 0
 
     out_dir = os.path.join(case_dir, "assets", "gen")
