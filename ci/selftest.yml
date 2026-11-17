@@ -36,3 +36,9 @@ jobs:
 
       - name: 文案禁用词自检
         run: python scripts/checkcopy.py . --ext .md,.py,.txt
+
+      - name: 复现验收 · 观时 17 页
+        run: python scripts/reproduce.py --case watch
+
+      - name: 复现验收 · 南枝 11 页
+        run: python scripts/reproduce.py --case nanzhi

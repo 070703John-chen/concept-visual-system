@@ -4,6 +4,43 @@
 
 ---
 
+## 1.3.0 — 2026-11-18
+
+**修断点一：基线错了**
+- `examples/watch` 对齐定稿 v6：16 页 → **17 页**（补 `00-cover` 作品集封面），长图 25192 → **25438**
+- 新增 `alpha_pages.py`：RGB 画布 → RGBA、jpg → png（阶段 ⑥ 第一步，之前整段缺）
+- 新增 `build_long.py`：定稿级合成（渐变 + 四道柔光带 + 侧向明暗 + 噪点 + 0.6px 模糊，页距 20）
+- 08/12 两页在定稿里是**整幅不透明页**（不裁不羽化）；把它们当透明页裁边会正好差 100 px —— 这是本次最隐蔽的一处
+- `examples/nanzhi` 补 `build_long.py`：11 页、长图 **17800**、网页版 760×11273
+
+**修断点二：没有效果标尺**
+- `examples/*/reference/` 入库：定稿成品 32 个文件（17 页 + 长图 / 11 页 + 长图，16.6 MB）
+- 新增 `scripts/reproduce.py --case watch|nanzhi`：重跑 → 逐页比高度与像素差 → PASS/FAIL
+- 实测：手表 17 页差 0.00–3.76、香水 11 页差 0.15–0.81，长图尺寸完全一致
+
+**修断点三：机器指纹**
+- 字体改为解析式：`CVS_FONT` → `assets/fonts/` → 系统路径 → **报错退出**
+- 新增 `scripts/bootstrap_fonts.py`：固定来源下载 + 大小校验 + 支持 `SHA256SUMS` 钉版本
+- `requirements.txt` 钉死 `Pillow==9.5.0` / `numpy==1.26.4`；README 写明 Python 3.11.9
+
+**能力迁移：生图段**
+- 新增 `scripts/gen_images.py`（MiniMax image-01）；无 key 时 `--no-gen` 只列清单
+- `examples/*/prompts/`：身份锁 / 场景锁 / 创意锁 三段式提示词
+- `.env.example`；`.env` 进 `.gitignore`
+- SKILL.md 新增第十二节「AI 硬限制」：正面表盘必编假字、多角度无法一致、标签文字必编、光向会漂、尺寸不可当数据
+- `reference/style-anchor/` 5 张风格锚点图
+
+**验收（从远端全新 clone 实测）**
+```
+python scripts/preflight.py --out-dir .        → 全部通过
+python scripts/bootstrap_fonts.py              → 字体就绪
+python scripts/reproduce.py --case watch       → PASS（17 页 + 25438）
+python scripts/reproduce.py --case nanzhi      → PASS（11 页 + 17800）
+python scripts/selftest.py                     → 全部通过
+```
+
+---
+
 ## 1.2.1 — 2026-11-18
 
 **新增**
